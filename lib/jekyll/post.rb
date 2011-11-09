@@ -183,6 +183,7 @@ module Jekyll
       # construct payload
       payload = {
         "site" => { "related_posts" => related_posts(site_payload["site"]["posts"]) },
+        "post" => self.to_liquid,
         "page" => self.to_liquid
       }.deep_merge(site_payload)
 
@@ -225,7 +226,7 @@ module Jekyll
         "next"       => self.next,
         "previous"   => self.previous,
         "tags"       => self.tags,
-        "content"    => self.content })
+        "content"    => converter.convert(self.content) })
     end
 
     def inspect
